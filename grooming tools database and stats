@@ -1,0 +1,27 @@
+---Create a grooming tools database
+CREATE TABLE grooming_tools (id integer primary key, name text, category text, price integer, quantity integer);
+
+INSERT INTO grooming_tools VALUES(1, "ags slicker", "brush", 10, 4);
+INSERT INTO grooming_tools VALUES(2, "coral slicker", "brush", 60, 7);
+INSERT INTO grooming_tools VALUES(3, "kenchii spider curve", "shear", 100, 5);
+INSERT INTO grooming_tools VALUES(4, "kenchii shinobi thinner", "shear", 250, 3);
+INSERT INTO grooming_tools VALUES(5, "heineger opal clipper", "clipper", 450, 2);
+INSERT INTO grooming_tools VALUES(6, "hemostats", "misc", 5, 10);
+INSERT INTO grooming_tools VALUES(7, "coat king", "brush", 40, 5);
+INSERT INTO grooming_tools VALUES(8, "ags wide comb", "comb", 40, 10);
+INSERT INTO grooming_tools VALUES(9, "ags wide comb attachments set", "blades", 150, 8);
+INSERT INTO grooming_tools VALUES(10, "ags wide 7f", "blades", 60, 10);
+INSERT INTO grooming_tools VALUES(11, "ags 7f", "blades", 25, 10);
+INSERT INTO grooming_tools VALUES(12, "ags 5f", "blades", 25, 10);
+INSERT INTO grooming_tools VALUES(13, "les pooch slicker", "brush", 120, 5);
+INSERT INTO grooming_tools VALUES(14, "wahl bravura", "clipper", 170, 3);
+INSERT INTO grooming_tools VALUES(15, "gem chunker", "shear", 99, 5);
+INSERT INTO grooming_tools VALUES(16, "ags wide 4f", "blades", 60, 5);
+
+--display grooming tools that are greater than or equal to $60 in ascending order
+SELECT * FROM grooming_tools WHERE price >= 60 ORDER BY price;
+
+--display the total amount of inventory for each category
+SELECT category, SUM(price) FROM grooming_tools GROUP BY category;
+
+
