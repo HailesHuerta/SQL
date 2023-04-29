@@ -1,0 +1,38 @@
+CREATE TABLE famous_people
+(id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, home_country TEXT);
+
+INSERT INTO famous_people (first_name, last_name, home_country) VALUES ("danielle", "radcliff", "UK");
+INSERT INTO famous_people (first_name, last_name, home_country) VALUES ("emma", "watson", "UK");
+INSERT INTO famous_people (first_name, last_name, home_country) VALUES ("rupert", "grint", "UK");
+INSERT INTO famous_people (first_name, last_name, home_country) VALUES ("heath", "ledger", "USA");
+INSERT INTO famous_people (first_name, last_name, home_country) VALUES ("tom", "felton", "UK");
+
+CREATE TABLE movies (id INTEGER PRIMARY KEY, artist_id INTEGER, movie_title TEXT, production_co TEXT);
+
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("1", "harry potter", "warner bros");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("1", "the woman in black", "alliance films");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("1", "now you see me 2", "summit entertainment");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("2", "harry potter", "warner bros");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("2", "little women", "columbia pictures");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("2", "perks of being a wallflower", "summit entertainment" );
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("2", "beauty and the beast", "disney");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("2", "this is the end", "point grey pictures");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("3", "harry potter", "warner bros");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("3", "knock at the cabin", "universal");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("4", "a knights tale", "columbia pictures");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("4", "10 things i hate about you", "touchstone pictures");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("4", "the dark knight", "warner bros");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("5", "the borrowers", "polygram filmed entertainment");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("5", "harry potter", "warner bros");
+INSERT INTO movies (artist_id, movie_title, production_co) VALUES ("5", "the flash series", "the cw");
+
+--Shows the persons name with corresponding movie title and production company
+SELECT fp.first_name, fp.last_name, m.movie_title, m.production_co FROM famous_people fp
+JOIN movies m
+ON fp.id = m.artist_id; 
+
+-- Who has worked with the production company, summit entertainment, and what was the movie title?
+SELECT fp.first_name, fp.last_name, m.movie_title FROM famous_people fp
+JOIN movies m
+ON fp.id= m.artist_id
+WHERE m.production_co = "summit entertainment";
