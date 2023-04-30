@@ -1,0 +1,46 @@
+--In this series I am querying data from mulitple tables about customers information and product sales
+
+#1. How many orders were placed in January?
+SELECT COUNT(*) orderID 
+FROM "JanSales"
+WHERE length(orderID = 6
+AND orderID <> 'Order ID');
+
+#2. How many of those orders were for an iPhone?
+SELECT COUNT(*) product
+FROM "JanSales"
+WHERE product= "iPhone"; 
+
+#3. Select the customer account numbers for all the orders that were placed in February.
+SELECT DISTINCT customers.acctnum
+FROM "customers"
+INNER JOIN "FebSales"
+ON customers.order_id = FebSales.orderID
+WHERE length(customers.order_id) = 6
+AND customers.order_id <> 'Order ID';
+
+#4. Which product was the cheapest one sold in January, and what was the price? 
+SELECT product, price
+FROM "JanSales"
+WHERE price= (SELECT MIN(price) FROM "JanSales")
+LIMIT 1; 
+
+#5. What is the total revenue for each product sold in January?
+SELECT product, SUM(quantity) * price AS product_revenue
+FROM "JanSales"
+GROUP BY product;
+
+#6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+SELECT product, SUM(Quantity), SUM(Quantity)*price AS product_revenue
+FROM "FebSales"
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+GROUP BY product;
+
+#7. How many customers ordered more than 2 products at a time, and what was the average amount spent for those customers?
+SELECT COUNT(customers.acctnum), AVG(quantity*price)
+FROM "customers" 
+LEFT JOIN "FebSales"
+ON customers.order_id = FebSales.orderID
+WHERE FebSales.Quantity>2
+AND length(orderid) = 6 
+AND orderid <> 'Order ID';
